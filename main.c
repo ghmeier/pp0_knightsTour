@@ -19,6 +19,7 @@ int main()
 	//int dif[] = [-11,-9,-3,7,11,9,3,7];
 	int xMove[8] = {-2,-2,-1,-1, 1, 1, 2, 2};
 	int yMove[8] = { 1,-1,-2, 2,-2, 2,-1, 1};
+
 	int moves = 8;
 
 	int x = 0;
@@ -50,13 +51,13 @@ int main()
 		}
 
 	}
-	printf("%i\n",total);
+	
 	return 0;
 
 }
 
 //try all the moves 
-void tryMoves(int* currentSpace, int length, int* xMoves, int* yMoves, int moves, int movesTaken, int maxMoves, int* currentCompleteMoves, int* currentMoves,int* total)
+void tryMoves(int* currentSpace, int length, int* xMoves, int* yMoves, int moves, int movesTaken, int maxMoves, int* currentCompleteMoves, int* currentMoves)
 {
 	
 	if (movesTaken >= maxMoves)
