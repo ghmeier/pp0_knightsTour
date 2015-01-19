@@ -1,0 +1,15 @@
+README
+Project 0, Knight's Tour
+
+tryMoves -
+	This function runs the recursive calls to try all 8 possible moves from a given location. The terminating conditions of this call are either 25 moves taken, or no valid moves.
+
+isValidMove -
+	Returns 1 if the move is on the board and has not been taken before.
+
+takeMove -
+	Changes the space values by the amount of the move.
+
+spaceNumber -
+	Gets the number of the space in the grid, based on x, y position.
+

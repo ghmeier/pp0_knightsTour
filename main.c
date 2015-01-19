@@ -1,26 +1,18 @@
-//Garret Meier
-//CS 229 Spring 2015
-//Programming Project 0
-//Knight's Tour
 
 #include <stdio.h>
+#include "main.h"
 
-int isValidMove(int* move, int* currentSpace ,int length,int* completedMoves);
-void takeMove(int* move, int* currentSpace);
-void tryMoves(int* currentSpace, int length, int* xMoves, int* yMoves, int moves, int movesTaken, int maxMoves, int* completedMoves,int* currentMoves);
-void printArray(int* array,int length);
+int traverses = 0;
 
-int main()
+int main(int argc, char *argv[])
 {
 	//we're gonna assume it's a square for now :)
 	int length = 5;
 
-
-	//int dif[] = [-11,-9,-3,7,11,9,3,7];
+	int moves = 8;
 	int xMove[8] = {-2,-2,-1,-1, 1, 1, 2, 2};
 	int yMove[8] = { 1,-1,-2, 2,-2, 2,-1, 1};
 
-	int moves = 8;
 
 	int x = 0;
 	int y = 0;
@@ -51,23 +43,26 @@ int main()
 		}
 
 	}
+
+	printf("%d traverses.\n", traverses);
 	
 	return 0;
 
 }
 
-//try all the moves 
+//try all the moves from the current space
 void tryMoves(int* currentSpace, int length, int* xMoves, int* yMoves, int moves, int movesTaken, int maxMoves, int* currentCompleteMoves, int* currentMoves)
 {
 	
 	if (movesTaken >= maxMoves)
 	{
 		printArray(currentMoves,maxMoves);
+		traverses ++;
 		return;
 	}
 
-	int i = 0;
-	for (i=0; i < moves; i = i+1)
+	int i,j;
+	for (i=0; i < moves; i++)
 	{
 		int current[2] = {currentSpace[0],currentSpace[1]};
 		int move[2] = {xMoves[i],yMoves[i]};
@@ -76,11 +71,12 @@ void tryMoves(int* currentSpace, int length, int* xMoves, int* yMoves, int moves
 		{
 			int orderedMoves[maxMoves]; 
 			int completedMoves[maxMoves];
-			int j=0;
-			for (j=0; j<maxMoves; j=j+1){
+
+			for (j=0; j<maxMoves; j++){
 					orderedMoves[j] = currentMoves[j];
 					completedMoves[j] = currentCompleteMoves[j];
 			}
+
 			takeMove(move,current);
 			int spaceNumber = getSpaceNumber(current[0],current[1],length);
 			completedMoves[spaceNumber-1] = 0;
@@ -124,7 +120,7 @@ void printArray(int* array, int length){
 	int i=0;
 	for (i=0; i<length;i=i+1)
 	{
-		printf("%i,",array[i]);
+		printf("%2i,",array[i]);
 	}
 	printf("\n");
 }
